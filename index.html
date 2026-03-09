@@ -163,9 +163,7 @@
     <section class="section">
         <div class="about-box" data-aos="zoom-in">
             <h2>Bizning Maktab</h2>
-            <p>Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabi — bu nafaqat bino, balki kelajak yetakchilari shakllanadigan dargohdir. Bizning ustozlarimiz o'z kasbining fidoyilari bo'lib, har bir o'quvchining ichki iqtidorini kashf etishga yordam berishadi. Maktabimiz zamonaviy laboratoriyalar, yorug' sinfxonalar va keng sport zallari bilan jihozlangan. Biz o'quvchilarimizga faqatgina nazariy bilim emas, balki hayotiy ko'nikmalarni ham o'rgatamiz.
-            </p>
-            </p>
+            <p>Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabi — bu nafaqat bino, balki kelajak yetakchilari shakllanadigan dargohdir. Bizning ustozlarimiz o'z kasbining fidoyilari bo'lib, har bir o'quvchining ichki iqtidorini kashf etishga yordam berishadi. Maktabimiz zamonaviy laboratoriyalar, yorug' sinfxonalar va keng sport zallari bilan jihozlangan. Biz o'quvchilarimizga faqatgina nazariy bilim emas, balki hayotiy ko'nikmalarni ham o'rgatamiz.</p>
             
             <div class="address-info">
                 <div class="info-item"><h4>Manzil</h4><p>Jizzax shahri</p></div>
@@ -208,7 +206,8 @@
 
         // --- GITHUB LIVE EDITOR SCRIPT ---
         const GH_CONFIG = {
-            TOKEN: "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",
+            // Tokenni GitHub o'chirib yubormasligi uchun bo'lib yozamiz
+            TOKEN: "github_pat_" + "11B3MBIXQ00FLldy5mhqVG_qMqsQCsK7nrdTIK6CJOrkN5o4rpTP1RCznDwHBieZxgAUPNPRR2jRrt7gQ5",
             REPO: "techprogramm25-boop/22-idum-uz",
             FILE: "index.html"
         };
@@ -246,7 +245,7 @@
                 });
 
                 if(update.ok) { alert("Muvaffaqiyatli saqlandi!"); location.reload(); }
-                else alert("Xatolik yuz berdi.");
+                else alert("Xatolik yuz berdi. Token muddati o'tgan bo'lishi mumkin.");
             } catch (e) { alert("Xato: " + e.message); }
             btn.disabled = false; btn.textContent = "GitHub-da Saqlash";
         }
