@@ -17,10 +17,26 @@
             --text-main: #1d1d1f;
         }
 
+        /* --- EDITOR UI (YASHIRIN) --- */
+        #gh-admin-editor {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000c1d; z-index: 100001; display: none;
+            flex-direction: column; padding: 20px;
+        }
+        #gh-admin-editor textarea {
+            flex-grow: 1; background: #011627; color: #d6deeb;
+            font-family: 'Consolas', monospace; padding: 20px; border: 1px solid var(--gold-accent);
+            border-radius: 12px; font-size: 14px; outline: none; margin-bottom: 15px;
+        }
+        .ed-controls { display: flex; gap: 10px; justify-content: flex-end; }
+        .ed-btn { padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; }
+        .ed-save { background: #238636; color: white; }
+        .ed-close { background: #da3633; color: white; }
+
+        /* --- ORIGINAL STYLES --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background: var(--soft-white); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* --- 8s SEKIN DRAWING LOADER --- */
         #loader-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000c1d; display: flex; flex-direction: column;
@@ -33,15 +49,14 @@
             animation: penDraw 8s linear forwards;
         }
         @keyframes penDraw { to { stroke-dashoffset: 0; } }
-        .loader-hidden { transform: translateY(-100%); transition: 1.5s cubic-bezier(1, 0, 0, 1); }
+        .loader-hidden { transform: translateY(-100%); transition: 1.5s cubic-bezier(1, 0, 0, 1); pointer-events: none; }
 
-        /* --- NAVIGATION --- */
         nav {
             padding: 20px 8%; background: rgba(255,255,255,0.95); backdrop-filter: blur(15px);
             display: flex; justify-content: space-between; align-items: center;
             position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #eee;
         }
-        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary-blue); letter-spacing: -1px; }
+        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary-blue); letter-spacing: -1px; cursor: pointer; user-select: none; }
 
         .custom-insta {
             width: 48px; height: 48px; border: 2px solid var(--primary-blue); border-radius: 14px;
@@ -52,7 +67,6 @@
         .custom-insta i { font-size: 1.4rem; color: var(--primary-blue); }
         .custom-insta:hover i { color: white; }
 
-        /* --- HERO --- */
         .hero {
             height: 85vh; 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
@@ -62,13 +76,11 @@
         .hero-content h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 25px; }
         .hero-content p { font-size: 1.2rem; max-width: 650px; opacity: 0.9; margin-bottom: 40px; border-left: 3px solid var(--gold-accent); padding-left: 20px; }
 
-        /* --- SECTIONS --- */
         .section { padding: 80px 8%; }
         .title-group { margin-bottom: 60px; text-align: center; }
         .title-group h2 { font-size: 2.8rem; color: var(--primary-blue); }
         .title-group .bar { width: 70px; height: 5px; background: var(--gold-accent); margin: 15px auto; border-radius: 10px; }
 
-        /* --- FANLAR GRID (TO'LIQ) --- */
         .dars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .dars-card { background: var(--bg-light); padding: 35px; border-radius: 28px; border: 1px solid #eef2f8; transition: 0.4s; }
         .dars-card:hover { background: white; box-shadow: 0 25px 50px rgba(0,45,98,0.1); transform: translateY(-10px); border-color: var(--gold-accent); }
@@ -76,7 +88,6 @@
         .dars-card h3 { margin-bottom: 12px; font-size: 1.4rem; color: var(--primary-blue); font-weight: 700; }
         .dars-card p { font-size: 0.95rem; color: #555; line-height: 1.7; }
 
-        /* --- MAKTAB HAQIDA --- */
         .about-box { background: var(--primary-blue); color: white; border-radius: 50px; padding: 80px; text-align: center; }
         .about-box h2 { font-size: 3rem; margin-bottom: 30px; color: var(--gold-accent); }
         .about-box p { font-size: 1.2rem; line-height: 2; opacity: 0.9; max-width: 900px; margin: 0 auto 40px; }
@@ -89,7 +100,6 @@
         .loc-btn { background: #34a853; color: white; padding: 20px 45px; border-radius: 15px; text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 15px; transition: 0.3s; }
         .loc-btn:hover { background: #2d8f47; transform: scale(1.05); }
 
-        /* --- TAGS & FOOTER --- */
         footer { background: #010a18; color: white; padding: 80px 8% 40px; }
         .tags-container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 50px; }
         .tag-item { padding: 10px 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 50px; font-size: 0.8rem; color: var(--gold-accent); font-weight: 600; text-transform: lowercase; }
@@ -99,6 +109,15 @@
 </head>
 <body>
 
+    <div id="gh-admin-editor">
+        <h3 style="color:var(--gold-accent); margin-bottom:10px;">Live Editor (GitHub)</h3>
+        <textarea id="gh-code-input" spellcheck="false"></textarea>
+        <div class="ed-controls">
+            <button class="ed-btn ed-close" onclick="closeAdmin()">Yopish</button>
+            <button class="ed-btn ed-save" id="gh-save-btn" onclick="saveToGitHub()">GitHub-da Saqlash</button>
+        </div>
+    </div>
+
     <div id="loader-screen">
         <svg class="drawing-svg" viewBox="0 0 600 150">
             <text x="50%" y="100" text-anchor="middle" class="draw-path" style="font-family: Arial; font-size: 85px; font-weight: 900; letter-spacing: 15px;">22-IDUM</text>
@@ -107,7 +126,7 @@
     </div>
 
     <nav>
-        <div class="logo">22-IDUM.UZ</div>
+        <div class="logo" id="admin-logo">22-IDUM.UZ</div>
         <a href="https://www.instagram.com/22.idum/" target="_blank" class="custom-insta"><i class="fab fa-instagram"></i></a>
     </nav>
 
@@ -144,23 +163,17 @@
     <section class="section">
         <div class="about-box" data-aos="zoom-in">
             <h2>Bizning Maktab</h2>
-            <p>
-                Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabi — bu nafaqat bino, balki kelajak yetakchilari shakllanadigan dargohdir. Bizning ustozlarimiz o'z kasbining fidoyilari bo'lib, har bir o'quvchining ichki iqtidorini kashf etishga yordam berishadi. Maktabimiz zamonaviy laboratoriyalar, yorug' sinfxonalar va keng sport zallari bilan jihozlangan. Biz o'quvchilarimizga faqatgina nazariy bilim emas, balki hayotiy ko'nikmalarni ham o'rgatamiz.
+            <p>Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabi — bu nafaqat bino, balki kelajak yetakchilari shakllanadigan dargohdir. Bizning ustozlarimiz o'z kasbining fidoyilari bo'lib, har bir o'quvchining ichki iqtidorini kashf etishga yordam berishadi. Maktabimiz zamonaviy laboratoriyalar, yorug' sinfxonalar va keng sport zallari bilan jihozlangan. Biz o'quvchilarimizga faqatgina nazariy bilim emas, balki hayotiy ko'nikmalarni ham o'rgatamiz.
+            </p>
             </p>
             
             <div class="address-info">
-                <div class="info-item">
-                    <h4>Manzil</h4>
-                    <p>Jizzax shahri</p>
-                </div>
-                <div class="info-item">
-                    <h4>Bog'lanish</h4>
-                    <p>info@22-idum.uz</p>
-                </div>
+                <div class="info-item"><h4>Manzil</h4><p>Jizzax shahri</p></div>
+                <div class="info-item"><h4>Bog'lanish</h4><p>info@22-idum.uz</p></div>
             </div>
 
             <a href="https://maps.app.goo.gl/vcTipvY7vMJ6wxjY8" target="_blank" class="loc-btn">
-                <i class="fas fa-map-marked-alt"></i> LOKATSIYANI KO'RISH
+                <i class="fas fa-map-marked-alt"></i> Manzilni Ko'rish
             </a>
         </div>
     </section>
@@ -192,6 +205,51 @@
                 document.getElementById('loader-screen').classList.add('loader-hidden');
             }, 8500); 
         };
+
+        // --- GITHUB LIVE EDITOR SCRIPT ---
+        const GH_CONFIG = {
+            TOKEN: "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",
+            REPO: "techprogramm25-boop/22-idum-uz",
+            FILE: "index.html"
+        };
+
+        let clickTimer = 0;
+        document.getElementById('admin-logo').onclick = () => {
+            clickTimer++;
+            if(clickTimer === 4) {
+                if(prompt("Parol:") === "2015") {
+                    document.getElementById('gh-admin-editor').style.display = 'flex';
+                    document.getElementById('gh-code-input').value = document.documentElement.outerHTML;
+                }
+                clickTimer = 0;
+            }
+        };
+
+        function closeAdmin() { document.getElementById('gh-admin-editor').style.display = 'none'; }
+
+        async function saveToGitHub() {
+            const btn = document.getElementById('gh-save-btn');
+            const newCode = document.getElementById('gh-code-input').value;
+            btn.disabled = true; btn.textContent = "Saqlanmoqda...";
+
+            try {
+                const res = await fetch(`https://api.github.com/repos/${GH_CONFIG.REPO}/contents/${GH_CONFIG.FILE}`, {
+                    headers: { "Authorization": `token ${GH_CONFIG.TOKEN}` }
+                });
+                const data = await res.json();
+                const encoded = btoa(unescape(encodeURIComponent(newCode)));
+
+                const update = await fetch(`https://api.github.com/repos/${GH_CONFIG.REPO}/contents/${GH_CONFIG.FILE}`, {
+                    method: "PUT",
+                    headers: { "Authorization": `token ${GH_CONFIG.TOKEN}`, "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: "Update via Portal Editor", content: encoded, sha: data.sha })
+                });
+
+                if(update.ok) { alert("Muvaffaqiyatli saqlandi!"); location.reload(); }
+                else alert("Xatolik yuz berdi.");
+            } catch (e) { alert("Xato: " + e.message); }
+            btn.disabled = false; btn.textContent = "GitHub-da Saqlash";
+        }
     </script>
 </body>
 </html>
