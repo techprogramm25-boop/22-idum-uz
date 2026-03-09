@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22-sonli IDUM | Rasmiy Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <style>
+        :root {
+            --primary-blue: #002d62;
+            --gold-accent: #c5a059;
+            --soft-white: #ffffff;
+            --bg-light: #f8fbff;
+            --text-main: #1d1d1f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--soft-white); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- 8s SEKIN DRAWING LOADER --- */
+        #loader-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000c1d; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 10000;
+        }
+        .drawing-svg { width: 400px; overflow: visible; }
+        .draw-path {
+            fill: none; stroke: var(--gold-accent); stroke-width: 1.5;
+            stroke-dasharray: 1200; stroke-dashoffset: 1200;
+            animation: penDraw 8s linear forwards;
+        }
+        @keyframes penDraw { to { stroke-dashoffset: 0; } }
+        .loader-hidden { transform: translateY(-100%); transition: 1.5s cubic-bezier(1, 0, 0, 1); }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 8%; background: rgba(255,255,255,0.95); backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #eee;
+        }
+        .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary-blue); letter-spacing: -1px; }
+
+        .custom-insta {
+            width: 48px; height: 48px; border: 2px solid var(--primary-blue); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .custom-insta:hover { transform: rotate(360deg) scale(1.1); background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); border-color: transparent; }
+        .custom-insta i { font-size: 1.4rem; color: var(--primary-blue); }
+        .custom-insta:hover i { color: white; }
+
+        /* --- HERO --- */
+        .hero {
+            height: 85vh; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://i.postimg.cc/yd8CkgL1/22.webp') center/cover no-repeat fixed;
+            display: flex; align-items: center; padding: 0 8%; color: white;
+        }
+        .hero-content h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 25px; }
+        .hero-content p { font-size: 1.2rem; max-width: 650px; opacity: 0.9; margin-bottom: 40px; border-left: 3px solid var(--gold-accent); padding-left: 20px; }
+
+        /* --- SECTIONS --- */
+        .section { padding: 80px 8%; }
+        .title-group { margin-bottom: 60px; text-align: center; }
+        .title-group h2 { font-size: 2.8rem; color: var(--primary-blue); }
+        .title-group .bar { width: 70px; height: 5px; background: var(--gold-accent); margin: 15px auto; border-radius: 10px; }
+
+        /* --- FANLAR GRID (TO'LIQ) --- */
+        .dars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .dars-card { background: var(--bg-light); padding: 35px; border-radius: 28px; border: 1px solid #eef2f8; transition: 0.4s; }
+        .dars-card:hover { background: white; box-shadow: 0 25px 50px rgba(0,45,98,0.1); transform: translateY(-10px); border-color: var(--gold-accent); }
+        .dars-card i { font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 25px; display: block; }
+        .dars-card h3 { margin-bottom: 12px; font-size: 1.4rem; color: var(--primary-blue); font-weight: 700; }
+        .dars-card p { font-size: 0.95rem; color: #555; line-height: 1.7; }
+
+        /* --- MAKTAB HAQIDA --- */
+        .about-box { background: var(--primary-blue); color: white; border-radius: 50px; padding: 80px; text-align: center; }
+        .about-box h2 { font-size: 3rem; margin-bottom: 30px; color: var(--gold-accent); }
+        .about-box p { font-size: 1.2rem; line-height: 2; opacity: 0.9; max-width: 900px; margin: 0 auto 40px; }
+        
+        .address-info { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-bottom: 40px; }
+        .info-item { text-align: center; }
+        .info-item h4 { color: var(--gold-accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .info-item p { font-size: 1rem; opacity: 1; margin-bottom: 0; }
+
+        .loc-btn { background: #34a853; color: white; padding: 20px 45px; border-radius: 15px; text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 15px; transition: 0.3s; }
+        .loc-btn:hover { background: #2d8f47; transform: scale(1.05); }
+
+        /* --- TAGS & FOOTER --- */
+        footer { background: #010a18; color: white; padding: 80px 8% 40px; }
+        .tags-container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 50px; }
+        .tag-item { padding: 10px 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 50px; font-size: 0.8rem; color: var(--gold-accent); font-weight: 600; text-transform: lowercase; }
+        
+        .f-bottom { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; padding-top: 30px; text-align: center; font-size: 0.85rem; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+    <div id="loader-screen">
+        <svg class="drawing-svg" viewBox="0 0 600 150">
+            <text x="50%" y="100" text-anchor="middle" class="draw-path" style="font-family: Arial; font-size: 85px; font-weight: 900; letter-spacing: 15px;">22-IDUM</text>
+        </svg>
+        <p style="color: var(--gold-accent); margin-top: 25px; font-size: 0.8rem; letter-spacing: 10px; font-weight: 600; text-transform: uppercase;">YUKLANMOQDA</p>
+    </div>
+
+    <nav>
+        <div class="logo">22-IDUM.UZ</div>
+        <a href="https://www.instagram.com/22.idum/" target="_blank" class="custom-insta"><i class="fab fa-instagram"></i></a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-right">
+            <h1>Sifatli ta'lim,<br>porloq istiqbol.</h1>
+            <p>Jizzax shahridagi 22-sonli ixtisoslashtirilgan maktab — zamonaviy texnologiyalar va chuqur bilimlar uyg'unlashgan bilim maskani.</p>
+            <a href="#darslar" style="padding: 18px 45px; background: var(--gold-accent); color: white; text-decoration: none; font-weight: 800; border-radius: 8px;">FANLARNI O'RGANISH</a>
+        </div>
+    </section>
+
+    <section class="section" id="darslar">
+        <div class="title-group" data-aos="fade-up">
+            <h2>O'quv FANLAR</h2>
+            <div class="bar"></div>
+        </div>
+        
+        <div class="dars-grid">
+            <div class="dars-card" data-aos="fade-up"><i class="fas fa-book-open"></i><h3>Ona tili</h3><p>Milliy tilimiz va adabiyotimiz durdonalarini o'rganish darslari.</p></div>
+            <div class="dars-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-calculator"></i><h3>Matematika</h3><p>Mantiqiy fikrlashni rivojlantiruvchi aniq fanlar asosi.</p></div>
+            <div class="dars-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-flask"></i><h3>Kimyo</h3><p>Moddalar olami va laboratoriya sharoitidagi qiziqarli tajribalar.</p></div>
+            <div class="dars-card" data-aos="fade-up"><i class="fas fa-dna"></i><h3>Biologiya</h3><p>Tirik tabiat va inson organizmining sirli dunyosini o'rganamiz.</p></div>
+            <div class="dars-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-atom"></i><h3>Fizika</h3><p>Koinot qonuniyatlari va energiya bilan bog'liq jarayonlar.</p></div>
+            <div class="dars-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-laptop-code"></i><h3>Informatika</h3><p>Dasturlash asoslari va zamonaviy IT texnologiyalar olami.</p></div>
+            <div class="dars-card" data-aos="fade-up"><i class="fas fa-globe-americas"></i><h3>Ingliz Tili</h3><p>Xalqaro muloqot tili interaktiv metodlar yordamida o'tiladi.</p></div>
+            <div class="dars-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-landmark"></i><h3>Tarix</h3><p>Ajdodlarimiz merosi va dunyo sivilizatsiyasi bosqichlari.</p></div>
+            <div class="dars-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-running"></i><h3>Sport</h3><p>Sog'lom tana va g'alaba ruhi — bizning jismoniy tarbiya darslarimiz.</p></div>
+            <div class="dars-card" data-aos="fade-up"><i class="fas fa-square-root-alt"></i><h3>Geometriya</h3><p>Shakllar va fazoviy tasavvurni shakllantiruvchi fan.</p></div>
+            <div class="dars-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-palette"></i><h3>San'at</h3><p>Ijodiy qobiliyatlarni kashf etish va estetik didni rivojlantirish.</p></div>
+            <div class="dars-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-users"></i><h3>Ma'naviyat</h3><p>Insoniy fazilatlar va jamiyatda o'z o'rnini topish saboqlari.</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="about-box" data-aos="zoom-in">
+            <h2>Bizning Maktab</h2>
+            <p>
+                Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabi — bu nafaqat bino, balki kelajak yetakchilari shakllanadigan dargohdir. Bizning ustozlarimiz o'z kasbining fidoyilari bo'lib, har bir o'quvchining ichki iqtidorini kashf etishga yordam berishadi. Maktabimiz zamonaviy laboratoriyalar, yorug' sinfxonalar va keng sport zallari bilan jihozlangan. Biz o'quvchilarimizga faqatgina nazariy bilim emas, balki hayotiy ko'nikmalarni ham o'rgatamiz.
+            </p>
+            
+            <div class="address-info">
+                <div class="info-item">
+                    <h4>Manzil</h4>
+                    <p>Jizzax shahri</p>
+                </div>
+                <div class="info-item">
+                    <h4>Bog'lanish</h4>
+                    <p>info@22-idum.uz</p>
+                </div>
+            </div>
+
+            <a href="https://maps.app.goo.gl/vcTipvY7vMJ6wxjY8" target="_blank" class="loc-btn">
+                <i class="fas fa-map-marked-alt"></i> LOKATSIYANI KO'RISH
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="tags-container" data-aos="fade-up">
+            <span class="tag-item">jizzax maktablari</span>
+            <span class="tag-item">22-idum portal</span>
+            <span class="tag-item">sifatli ta'lim</span>
+            <span class="tag-item">innovatsion maktab</span>
+            <span class="tag-item">jizzax ta'lim</span>
+            <span class="tag-item">o'quvchilar hayoti</span>
+            <span class="tag-item">online kundalik</span>
+            <span class="tag-item">bilim maskani</span>
+            <span class="tag-item">ixtisoslashtirilgan maktab</span>
+            <span class="tag-item">uzbekistan education</span>
+        </div>
+
+        <div class="f-bottom">
+            <p>© 2026 Jizzax 22-sonli ixtisoslashtirilgan maktab rasmiy portali. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loader-screen').classList.add('loader-hidden');
+            }, 8500); 
+        };
+    </script>
+</body>
+</html>
