@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="wEnKIDp4cIz89E5tO7Vu4Am8uZVobWeyUOaI-Isgstc" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>22-sonli IDUM | Rasmiy Portal</title>
+    <title>22-sonli IDUM | Jizzax shahridagi ixtisoslashtirilgan maktab</title>
+    
+    <!-- SEO va Qidiruv Tizimlari uchun To'liq Ma'lumotlar -->
+    <meta name="description" content="Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabining rasmiy portali. 22-idum yangiliklari, fanlar va maktab hayoti.">
+    <meta name="keywords" content="22-idum, 22-maktab jizzax, jizzax maktablari, ixtisoslashtirilgan maktab, 22-sonli idum">
+    <meta name="author" content="22-sonli IDUM">
+    
+    <!-- Open Graph -->
+    <meta property="OG:title" content="22-sonli IDUM | Rasmiy Portal">
+    <meta property="OG:description" content="Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabining rasmiy portali.">
+    <meta property="OG:site_name" content="22-idum">
+
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Favicon va Apple Touch Iconlar -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -59,14 +78,26 @@
         }
         .logo { font-weight: 800; font-size: 1.6rem; color: var(--primary-blue); letter-spacing: -1px; cursor: pointer; user-select: none; }
 
-        .custom-insta {
-            width: 48px; height: 48px; border: 2px solid var(--primary-blue); border-radius: 14px;
+        /* --- MENYU HAVOLALARI --- */
+        .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .nav-links a {
+            text-decoration: none; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem;
+            transition: 0.3s; display: flex; align-items: center; gap: 6px;
+        }
+        .nav-links a:hover { color: var(--gold-accent); }
+
+        .custom-insta, .custom-tg {
+            width: 40px; height: 40px; border: 2px solid var(--primary-blue); border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
             transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .custom-insta:hover { transform: rotate(360deg) scale(1.1); background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); border-color: transparent; }
-        .custom-insta i { font-size: 1.4rem; color: var(--primary-blue); }
+        .custom-insta i { font-size: 1.2rem; color: var(--primary-blue); }
         .custom-insta:hover i { color: white; }
+
+        .custom-tg:hover { transform: rotate(360deg) scale(1.1); background: #0088cc; border-color: transparent; }
+        .custom-tg i { font-size: 1.2rem; color: var(--primary-blue); }
+        .custom-tg:hover i { color: white; }
 
         .hero {
             height: 85vh; 
@@ -81,6 +112,22 @@
         .title-group { margin-bottom: 60px; text-align: center; }
         .title-group h2 { font-size: 2.8rem; color: var(--primary-blue); }
         .title-group .bar { width: 70px; height: 5px; background: var(--gold-accent); margin: 15px auto; border-radius: 10px; }
+
+        /* --- INSTAGRAM REELS (ASOSIY & GALEREYA) --- */
+        .video-showcase { display: flex; justify-content: center; align-items: center; margin-top: 40px; }
+        .video-box {
+            width: 100%; max-width: 400px; height: 650px; border-radius: 20px;
+            overflow: hidden; box-shadow: 0 20px 40px rgba(0,45,98,0.2); border: 2px solid var(--gold-accent);
+            background: #000;
+        }
+        .video-box iframe { width: 100%; height: 100%; border: none; }
+
+        .insta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; justify-items: center; }
+        .insta-embed-card {
+            width: 100%; max-width: 350px; background: var(--bg-light); border-radius: 20px;
+            overflow: hidden; border: 1px solid #eef2f8; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .insta-embed-card iframe { width: 100%; height: 500px; border: none; }
 
         .dars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .dars-card { background: var(--bg-light); padding: 35px; border-radius: 28px; border: 1px solid #eef2f8; transition: 0.4s; }
@@ -126,11 +173,20 @@
         <p style="color: var(--gold-accent); margin-top: 25px; font-size: 0.8rem; letter-spacing: 10px; font-weight: 600; text-transform: uppercase;">YUKLANMOQDA</p>
     </div>
 
+    <!-- YUQORI MENYU -->
     <nav>
         <div class="logo" id="admin-logo">22-IDUM.UZ</div>
-        <a href="https://www.instagram.com/22.idum/" target="_blank" class="custom-insta"><i class="fab fa-instagram"></i></a>
+        <div class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> Asosiy</a>
+            <a href="#darslar"><i class="fas fa-book"></i> Darslar</a>
+            <a href="#galereya"><i class="fas fa-photo-video"></i> Media</a>
+            <a href="https://www.google.com/maps/place/22-IDUM/data=!4m2!3m1!1s0x0:0x4541152aeff40715?sa=X&ved=1t:2428&ictx=111" target="_blank"><i class="fas fa-map-marker-alt"></i> Manzil</a>
+            <a href="https://t.me/jizzax_shahar_22_IDUM" target="_blank" class="custom-tg" title="Telegram Kanal"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://www.instagram.com/22.idum/" target="_blank" class="custom-insta" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content" data-aos="fade-right">
             <h1>Sifatli ta'lim,<br>porloq istiqbol.</h1>
@@ -139,12 +195,25 @@
         </div>
     </section>
 
+    <!-- ASOSIY SAHIFADAGI INSTAGRAM REEL -->
+    <section class="section">
+        <div class="title-group" data-aos="fade-up">
+            <h2>Maktab Hayotidan Lavha</h2>
+            <div class="bar"></div>
+        </div>
+        <div class="video-showcase" data-aos="zoom-in">
+            <div class="video-box">
+                <iframe src="https://www.instagram.com/reel/C_YN3VINGkl/embed" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- O'QUV FANLAR -->
     <section class="section" id="darslar">
         <div class="title-group" data-aos="fade-up">
             <h2>O'quv FANLAR</h2>
             <div class="bar"></div>
         </div>
-        
         <div class="dars-grid">
             <div class="dars-card" data-aos="fade-up"><i class="fas fa-book-open"></i><h3>Ona tili</h3><p>Milliy tilimiz va adabiyotimiz durdonalarini o'rganish darslari.</p></div>
             <div class="dars-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-calculator"></i><h3>Matematika</h3><p>Mantiqiy fikrlashni rivojlantiruvchi aniq fanlar asosi.</p></div>
@@ -161,18 +230,41 @@
         </div>
     </section>
 
+    <!-- INSTAGRAM MEDIA GALEREYA PAGE (Barcha bergan havolalaringiz to'g'ridan-to'g'ri sayt ichida ko'rinadi) -->
+    <section class="section" id="galereya">
+        <div class="title-group" data-aos="fade-up">
+            <h2>Instagram Lavhalar va Postlar</h2>
+            <div class="bar"></div>
+        </div>
+        <div class="insta-grid">
+            <div class="insta-embed-card" data-aos="fade-up">
+                <iframe src="https://www.instagram.com/p/C_Dp-q1NUq_/embed" allowfullscreen></iframe>
+            </div>
+            <div class="insta-embed-card" data-aos="fade-up" data-aos-delay="100">
+                <iframe src="https://www.instagram.com/reel/C5IIGADtPlN/embed" allowfullscreen></iframe>
+            </div>
+            <div class="insta-embed-card" data-aos="fade-up" data-aos-delay="200">
+                <iframe src="https://www.instagram.com/reel/C34swVlrjF4/embed" allowfullscreen></iframe>
+            </div>
+            <div class="insta-embed-card" data-aos="fade-up" data-aos-delay="300">
+                <iframe src="https://www.instagram.com/reel/C34lrPerrRY/embed" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIZNING MAKTAB & MANZIL -->
     <section class="section">
         <div class="about-box" data-aos="zoom-in">
             <h2>Bizning Maktab</h2>
-            <p>Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabi — bu nafaqat bino, balki kelajak yetakchilari shakllanadigan dargohdir. Bizning ustozlarimiz o'z kasbining fidoyilari bo'lib, har bir o'quvchining ichki iqtidorini kashf etishga yordam berishadi. Maktabimiz zamonaviy laboratoriyalar, yorug' sinfxonalar va keng sport zallari bilan jihozlangan. Biz o'quvchilarimizga faqatgina nazariy bilim emas, balki hayotiy ko'nikmalarni ham o'rgatamiz.</p>
+            <p>Jizzax shahridagi 22-sonli ixtisoslashtirilgan davlat umumta'lim maktabi — bu nafaqat bino, balki kelajak yetakchilari shakllanadigan dargohdir. Bizning ustozlarimiz o'z kasbining fidoyilari bo'lib, har bir o'quvchining ichki iqtidorini kashf etishga yordam berishadi. Maktabimiz zamonaviy laboratoriyalar, yorug' sinfxonalar va keng sport zallari bilan jihozlangan.</p>
             
             <div class="address-info">
                 <div class="info-item"><h4>Manzil</h4><p>Jizzax shahri</p></div>
-                <div class="info-item"><h4>Bog'lanish</h4><p>info@22-idum.uz</p></div>
+                <div class="info-item"><h4>Telegram Kanal</h4><p><a href="https://t.me/jizzax_shahar_22_IDUM" target="_blank" style="color:var(--gold-accent); text-decoration:none;">@jizzax_shahar_22_IDUM</a></p></div>
             </div>
 
-            <a href="https://maps.app.goo.gl/vcTipvY7vMJ6wxjY8" target="_blank" class="loc-btn">
-                <i class="fas fa-map-marked-alt"></i> Manzilni Ko'rish
+            <a href="https://www.google.com/maps/place/22-IDUM/data=!4m2!3m1!1s0x0:0x4541152aeff40715?sa=X&ved=1t:2428&ictx=111" target="_blank" class="loc-btn">
+                <i class="fas fa-map-marked-alt"></i> Manzilni Ko'rish (Maps)
             </a>
         </div>
     </section>
