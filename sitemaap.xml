@@ -1,33 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://22-idum.uz/</loc>
-    <lastmod>2024-05-20</lastmod>
+    <loc>https://22-idum-uz.vercel.app/</loc>
+    <lastmod>2026-10-31</lastmod>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://22-idum.uz/Asosiy</loc>
-    <lastmod>2024-05-20</lastmod>
+    <loc>https://22-idum-uz.vercel.app/#darslar</loc>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://22-idum.uz/Darslar</loc>
-    <lastmod>2024-05-21</lastmod>
+    <loc>https://22-idum-uz.vercel.app/#galereya</loc>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://22-idum.uz/Media</loc>
-    <lastmod>2024-05-15</lastmod>
-    <priority>0.5</priority>
-  </url>
-
-
-  <url>
-    <loc>https://22-idum.uz/Manzil</loc>
-    <lastmod>2024-05-15</lastmod>
-    <priority>0.5</priority>
   </url>
 </urlset>
